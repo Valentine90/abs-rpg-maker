@@ -4,9 +4,6 @@
 ![lANG](https://img.shields.io/badge/LANG-RUBY(%20RGSS%20)-red?style=for-the-badge&logo=appveyo)
 <p>Real-time battle system.</p>
 
-## Screenshot
-![alt text](https://i.imgur.com/RxhGNt2.png)
-
 ## Available functions
   - [x] HUD
   - [x] Hotbar
@@ -22,3 +19,6 @@
   - [x] Weapon-specific cooldown
   - [x] Skills in the area
   - [x] State timer
+
+## Screenshot
+![alt text](https://i.imgur.com/RxhGNt2.png)
