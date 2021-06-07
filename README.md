@@ -4,7 +4,7 @@
 ![lANG](https://img.shields.io/badge/LANG-RUBY(%20RGSS%20)-red?style=for-the-badge&logo=appveyo)
 <p>Real-time battle system.</p>
 
-## Available functions
+## Features
   - [x] HUD
   - [x] Hotbar
   - [x] Hotkey to defend yourself
