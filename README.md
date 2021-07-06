@@ -5,20 +5,20 @@
 <p>Real-time battle system.</p>
 
 ## Features
-  - [x] HUD
-  - [x] Hotbar
-  - [x] Hotkey to defend yourself
-  - [x] Drop on the floor
-  - [x] Automatic recovery of HP and SP
-  - [x] Gold Popup
-  - [x] Long-range weapons
-  - [x] Long-range skills
-  - [x] Long-range explosives
-  - [x] Animation when attacking
-  - [x] Animation when using skill
-  - [x] Weapon-specific cooldown
-  - [x] Skills in the area
-  - [x] State timer
+  - HUD
+  - Hotbar
+  - Hotkey to defend yourself
+  - Drop on the floor
+  - Automatic recovery of HP and SP
+  - Gold Popup
+  - Long-range weapons
+  - Long-range skills
+  - Long-range explosives
+  - Animation when attacking
+  - Animation when using skill
+  - Weapon-specific cooldown
+  - Skills in the area
+  - State timer
 
 ## Screenshot
 ![alt text](https://i.imgur.com/RxhGNt2.png)
