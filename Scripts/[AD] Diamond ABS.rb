@@ -5,29 +5,29 @@
 #==============================================================================
 
 # Tecla utilizada para o herói atacar
-ATTACK_KEY = Input::Key['S']
+ATTACK_KEY = Input::KEYS[:LETTER_S]
 
 # Tecla utilizada para o herói se defender
-DEFEND_KEY = Input::Key['D']
+DEFEND_KEY = Input::KEYS[:LETTER_D]
 
 # Teclas de atalho usadas para lançar itens e habilidades
 HOTKEYS = [
-  Input::Key['NumberKey 1'],
-  Input::Key['NumberKey 2'],
-  Input::Key['NumberKey 3'],
-  Input::Key['NumberKey 4'],
-  Input::Key['NumberKey 5'],
-  Input::Key['NumberKey 6'],
-  Input::Key['NumberKey 7'],
-  Input::Key['NumberKey 8'],
-  Input::Key['NumberKey 9']
+  Input::KEYS[:NUM_1],
+  Input::KEYS[:NUM_2],
+  Input::KEYS[:NUM_3],
+  Input::KEYS[:NUM_4],
+  Input::KEYS[:NUM_5],
+  Input::KEYS[:NUM_6],
+  Input::KEYS[:NUM_7],
+  Input::KEYS[:NUM_8],
+  Input::KEYS[:NUM_9]
 ]
 
 # Intervalo (em frames) entre os ataques do herói
 ATTACK_TIME = 30
 
 # Intervalo (em segundos) entre a morte e o renascimento dos inimigos
-RESPAWN_TIME = 5
+ENEMY_RESPAWN_TIME = 5
 
 # Tempo (em segundos) para o item desaparecer do chão
 DROP_DESPAWN_TIME = 60
@@ -54,26 +54,111 @@ GOLD_ICON = '032-Item01'
 
 # Armas de longo alcance
 RANGE_WEAPONS = {}
-# RANGE_WEAPONS[ID da arma] = [gráfico, ID do item, ID da animação, velocidade, alcance, animação (opcional), sufixo (opcional)]
-RANGE_WEAPONS[17] = ['Arrow', 30, 4, 4, 15, false, '_bow']
-RANGE_WEAPONS[18] = ['Arrow', 30, 4, 4, 15, false, '_bow']
-RANGE_WEAPONS[19] = ['Arrow', 30, 4, 4, 15, false, '_bow']
-RANGE_WEAPONS[20] = ['Arrow', 30, 4, 4, 15, false, '_bow']
-RANGE_WEAPONS[21] = ['Bullet', 31, 4, 4, 15, false, '_gun']
-RANGE_WEAPONS[22] = ['Bullet', 31, 4, 4, 15, false, '_gun']
-RANGE_WEAPONS[23] = ['Bullet', 31, 4, 4, 15, false, '_gun']
-RANGE_WEAPONS[14] = ['Bullet', 31, 4, 4, 15, false, '_gun']
-RANGE_WEAPONS[33] = ['Bullet', 31, 5, 4, 15, false, '_gun']
+# RANGE_WEAPONS[ID da arma]
+RANGE_WEAPONS[17] = {
+  :projectile_name  => 'Arrow', # Gráfico
+  :item_id          => 30,      # ID do item
+  :animation_id     => 4,       # ID da animação
+  :speed            => 4,       # Velocidade
+  :range            => 15,      # Alcance
+  :animation        => false,   # Animação (opcional)
+  :animation_suffix => '_bow'   # Sufixo (opcional)
+}
+RANGE_WEAPONS[18] = {
+  :projectile_name  => 'Arrow', # Gráfico
+  :item_id          => 30,      # ID do item
+  :animation_id     => 4,       # ID da animação
+  :speed            => 4,       # Velocidade
+  :range            => 15,      # Alcance
+  :animation        => false,   # Animação (opcional)
+  :animation_suffix => '_bow'   # Sufixo (opcional)
+}
+RANGE_WEAPONS[19] = {
+  :projectile_name  => 'Arrow', # Gráfico
+  :item_id          => 30,      # ID do item
+  :animation_id     => 4,       # ID da animação
+  :speed            => 4,       # Velocidade
+  :range            => 15,      # Alcance
+  :animation        => false,   # Animação (opcional)
+  :animation_suffix => '_bow'   # Sufixo (opcional)
+}
+RANGE_WEAPONS[20] = {
+  :projectile_name  => 'Arrow', # Gráfico
+  :item_id          => 30,      # ID do item
+  :animation_id     => 4,       # ID da animação
+  :speed            => 4,       # Velocidade
+  :range            => 15,      # Alcance
+  :animation        => false,   # Animação (opcional)
+  :animation_suffix => '_bow'   # Sufixo (opcional)
+}
+RANGE_WEAPONS[21] = {
+  :projectile_name  => 'Bullet', # Gráfico
+  :item_id          => 31,       # ID do item
+  :animation_id     => 4,        # ID da animação
+  :speed            => 4,        # Velocidade
+  :range            => 15,       # Alcance
+  :animation        => false,    # Animação (opcional)
+  :animation_suffix => '_gun'    # Sufixo (opcional)
+}
+RANGE_WEAPONS[22] = {
+  :projectile_name  => 'Bullet', # Gráfico
+  :item_id          => 31,       # ID do item
+  :animation_id     => 4,        # ID da animação
+  :speed            => 4,        # Velocidade
+  :range            => 15,       # Alcance
+  :animation        => false,    # Animação (opcional)
+  :animation_suffix => '_gun'    # Sufixo (opcional)
+}
+RANGE_WEAPONS[23] = {
+  :projectile_name  => 'Bullet', # Gráfico
+  :item_id          => 31,       # ID do item
+  :animation_id     => 4,        # ID da animação
+  :speed            => 4,        # Velocidade
+  :range            => 15,       # Alcance
+  :animation        => false,    # Animação (opcional)
+  :animation_suffix => '_gun'    # Sufixo (opcional)
+}
+RANGE_WEAPONS[24] = {
+  :projectile_name  => 'Bullet', # Gráfico
+  :item_id          => 31,       # ID do item
+  :animation_id     => 4,        # ID da animação
+  :speed            => 4,        # Velocidade
+  :range            => 15,       # Alcance
+  :animation        => false,    # Animação (opcional)
+  :animation_suffix => '_gun'    # Sufixo (opcional)
+}
+RANGE_WEAPONS[33] = {
+  :projectile_name  => 'Bullet', # Gráfico
+  :item_id          => 31,       # ID do item
+  :animation_id     => 4,        # ID da animação
+  :speed            => 4,        # Velocidade
+  :range            => 15,       # Alcance
+  :animation        => false,    # Animação (opcional)
+  :animation_suffix => '_gun'    # Sufixo (opcional)
+}
 
 # Habilidades de longo alcance
 RANGE_SKILLS = {}
-# RANGE_SKILLS[ID da habilidade] = [gráfico, velocidade, alcance, animação (opcional), sufixo (opcional)]
-RANGE_SKILLS[57] = ['Fire02', 4, 15, true, '_cast']
+# RANGE_SKILLS[ID da habilidade]
+RANGE_SKILLS[57] = {
+  :projectile_name  => 'Fire02', # Gráfico
+  :speed            => 4,        # Velocidade
+  :range            => 15,       # Alcance
+  :animation        => true,     # Animação (opcional)
+  :animation_suffix => '_cast'   # Sufixo da animação (opcional)
+}
 
 # Explosivos de longo alcance
 RANGE_EXPLODE = {}
-# RANGE_EXPLODE[ID da habilidade] = [gráfico, velocidade, alcance, alcance da explosão, animação (opcional), sufixo (opcional)]
-RANGE_EXPLODE[7] = ['ArrowExplode', 4, 15, 3, false, '_cast']
+# RANGE_EXPLODE[ID da habilidade]
+RANGE_EXPLODE[7] = {
+  :projectile_name  => 'ArrowExplode', # Gráfico
+  :speed            => 4,              # Velocidade
+  :range            => 15,             # Alcance
+  :explosion_range  => 3,              # Alcance da explosão
+  :animation        => false,          # Animação (opcional)
+  :animation_suffix => '_cast'         # Sufixo da animação (opcional)
+}
 
 # Animação da arma
 MELEE_ANIMATION = {}
@@ -101,7 +186,8 @@ COOLDOWN_WEAPONS = {}
 # COOLDOWN_WEAPONS[ID da arma] = tempo (em frames)
 COOLDOWN_WEAPONS[33] = 15
 
-# Tempo (em frames) para a habilidade ser utilizada novamente após ser lançada
+# Tempo (em frames) para a habilidade ser utilizada novamente 
+#após ser lançada
 COOLDOWN_SKILL = 30
 
 # Habilidade em área
@@ -112,21 +198,25 @@ AREA_SKILLS[58] = 5
 # Tempo de duração dos status
 STATES = []
 # STATES[ID do status] = tempo (em segundos)
-STATES[1] = 0 # Até ser curado
-STATES[2] = 10
-STATES[3] = 10
-STATES[4] = 10
-STATES[5] = 10
-STATES[6] = 10
-STATES[7] = 10
-STATES[8] = 10
-STATES[9] = 10
+STATES[1]  = 0 # Até ser curado
+STATES[2]  = 10
+STATES[3]  = 10
+STATES[4]  = 10
+STATES[5]  = 10
+STATES[6]  = 10
+STATES[7]  = 10
+STATES[8]  = 10
+STATES[9]  = 10
 STATES[10] = 10
 STATES[11] = 10
 STATES[12] = 10
 
 # Textos
-DAMAGE_TEXTS = ['Errou!', 'Crítico!', 'Subiu nível!']
+DAMAGE_TEXTS = {
+  :critical => 'Crítico!',
+  :miss     => 'Errou!',
+  :level_up => 'Subiu nível!'
+}
 
 # Texto mostrado ao memorizar um item ou uma habilidade
 MEMORIZED_TEXT = 'Memorizou!'
@@ -137,25 +227,25 @@ DAMAGE_FONT_BOLD = true
 DAMAGE_FONT_SIZE = 18
 
 # Cor dos textos
-DAMAGE_COLORS = [
-  Color.new(255, 255, 255), # Crítico
-  Color.new(255, 255, 255), # Dano
-  Color.new(176, 255, 144), # Cura
-  Color.new(255, 255, 255), # Errou
-  Color.new(255, 255, 0),   # Experiência
-  Color.new(255, 255, 255)  # Subiu nível
-]
+DAMAGE_COLORS = {
+  :critical => Color.new(255, 255, 255), # Crítico
+  :damage   => Color.new(255, 255, 255), # Dano
+  :heal     => Color.new(176, 255, 144), # Cura
+  :miss     => Color.new(255, 255, 255), # Errou
+  :exp      => Color.new(255, 255, 0),   # Experiência
+  :level_up => Color.new(255, 255, 255)  # Subiu nível
+}
 
 #==============================================================================
 # ** Kernel
 #==============================================================================
 module RPG::Cache
   #--------------------------------------------------------------------------
-  # * Projécteis
+  # * Projéctil
   #     filename : nome do arquivo
   #     hue      : tonalidade
   #--------------------------------------------------------------------------
-  def self.projectiles(filename, hue = 0)
+  def self.projectile(filename, hue = 0)
     self.load_bitmap('Graphics/Projectiles/', filename, hue)
   end
 end
@@ -268,7 +358,7 @@ class Game_Battler
       states_minus(attacker.minus_state_set)
     # Se houver falha
     else
-      self.damage = DAMAGE_TEXTS[0]
+      self.damage = DAMAGE_TEXTS[:miss]
       self.critical = false
     end
     return true
@@ -349,11 +439,11 @@ class Game_Battler
       if skill.power == 0
         self.damage = ''
         # Quando o status não é alterado
-        self.damage = DAMAGE_TEXTS[0] unless @state_changed
+        self.damage = DAMAGE_TEXTS[:miss] unless @state_changed
       end
     # Se errar
     else
-      self.damage = DAMAGE_TEXTS[0]
+      self.damage = DAMAGE_TEXTS[:miss]
     end
     return effective
   end
@@ -441,12 +531,12 @@ class Game_Battler
         if item.recover_sp_rate == 0 and item.recover_sp == 0 and
            (item.parameter_type == 0 or item.parameter_points == 0)
           # Quando trocar de status
-          self.damage = DAMAGE_TEXTS[0] unless @state_changed
+          self.damage = DAMAGE_TEXTS[:miss] unless @state_changed
         end
       end
     # Se errar
     else
-      self.damage = DAMAGE_TEXTS[0]
+      self.damage = DAMAGE_TEXTS[:miss]
     end
     return effective
   end
@@ -482,6 +572,7 @@ end
 class Game_Actor < Game_Battler
   #--------------------------------------------------------------------------
   alias diamond_abs_setup setup
+  alias diamond_abs_exp exp
   #--------------------------------------------------------------------------
   # * Variáveis públicas
   #--------------------------------------------------------------------------
@@ -525,7 +616,7 @@ class Game_Actor < Game_Battler
     @sp = [@sp, self.maxsp].min
     if @level > last_level and $scene.is_a?(Scene_Map)
       $game_player.animation_id = LEVEL_UP_ANIMATION_ID
-      self.damage = DAMAGE_TEXTS[2]
+      self.damage = DAMAGE_TEXTS[:level_up]
       recover_all
     end
   end
@@ -544,7 +635,7 @@ class Game_Enemy < Game_Battler
     super()
     @enemy_id = enemy_id
     @event_id = event_id
-    # Calcular novamente o HP e SP
+    # Calcular novamente HP e SP
     @hp = maxhp
     @sp = maxsp
   end
@@ -561,7 +652,8 @@ class Game_Party
   #--------------------------------------------------------------------------
   def gain_item(item_id, n)
     @items[item_id] = [[item_number(item_id) + n, 0].max, 99].min if item_id > 0
-    $scene.hotbar_sprite.refresh if $scene.is_a?(Scene_Map)
+    $scene.hotbar_sprite.refresh if $scene.is_a?(Scene_Map) and
+     @actors[0].hotkeys.values.include?(-item_id)
   end
 end
 
@@ -624,7 +716,8 @@ class Game_Map
   #--------------------------------------------------------------------------
   def update_events
     for event in @events.values
-      # Se o evento estiver na área, início automático ou processo paralelo
+      # Se o evento estiver na área, início automático ou
+      #processo paralelo
       event.update if in_screen?(event) or event.trigger == 3 or event.trigger == 4
     end
     for common_event in @common_events.values
@@ -693,18 +786,18 @@ class Game_Character
   #     skill : habilidade
   #--------------------------------------------------------------------------
   def skill_attack_range(skill)
-    projectile_name, speed, range, animation_id, sufix = RANGE_SKILLS[skill.id]
-    animate_attack(sufix) if sufix
-    $game_range << Game_Range.new(self, projectile_name, skill.animation2_id, speed, range, animation_id, skill.id)
+    range = RANGE_SKILLS[skill.id]
+    animate_attack(range[:animation_suffix]) if range[:animation_suffix]
+    $game_range << Game_Range.new(self, range[:projectile_name], skill.animation2_id, range[:speed], range[:range], range[:animation], skill.id)
   end
   #--------------------------------------------------------------------------
   # * Ataque com explosivo de longo alcance
   #     skill : habilidade
   #--------------------------------------------------------------------------
   def skill_explode_range(skill)
-    projectile_name, speed, range, explosion_range, animation_id, sufix = RANGE_EXPLODE[skill.id]
-    animate_attack(sufix) if sufix
-    $game_range << Game_Range.new(self, projectile_name, skill.animation2_id, speed, range, animation_id, skill.id, explosion_range)
+    explosive = RANGE_EXPLODE[skill.id]
+    animate_attack(explosive[:animation_suffix]) if explosive[:animation_suffix]
+    $game_range << Game_Range.new(self, explosive[:projectile_name], skill.animation2_id, explosive[:speed], explosive[:range], explosive[:animation], skill.id, explosive[:explosion_range])
   end
   #--------------------------------------------------------------------------
   # * Recuperar
@@ -888,17 +981,14 @@ class Game_Event < Game_Character
   #--------------------------------------------------------------------------
   def list_parameters(size, comment)
     return nil unless @page.list
+    parameters = nil
     @page.list.each_with_index do |item, i|
       # Se não for um comentário
-      next unless item.code == 108
-      next unless item.parameters[0].include?(comment)
-      parameters = []
-      for id in i...(i + size)
-        parameters << list[id].parameters[0] if list[id]
-      end
-      return parameters
+      next unless item.code == 108 && item.parameters[0].include?(comment)
+      parameters = list[i...i + size].map { |e| e.parameters[0] }
+      break
     end
-    return nil
+    return parameters
   end
   #--------------------------------------------------------------------------
   # * Atualizar
@@ -906,8 +996,8 @@ class Game_Event < Game_Character
   def refresh
     diamond_abs_refresh
     # Salvar velocidade e frequência originais
-    @old_speed = @move_speed
-    @old_frequency = @move_frequency
+    @old_move_speed = @move_speed
+    @old_move_frequency = @move_frequency
     # Se alguma página não completar as condições do evento
     unless @page
       clear_enemy
@@ -920,7 +1010,8 @@ class Game_Event < Game_Character
       return
     end
     enemy_id = parameters[0].split[1].to_i
-    # Não resetar o HP e o SP do inimigo, cujo ID não mudou, quando chamar o need_refresh
+    # Não resetar o HP e o SP do inimigo, cujo ID não mudou,
+    #quando chamar o need_refresh
     return if actor? and @enemy_id == enemy_id
     @enemy_id = enemy_id
     # Se o inimigo estiver renascendo
@@ -935,10 +1026,10 @@ class Game_Event < Game_Character
     @hate_group = eval(parameters[3].split[1])
     # Velocidade do ataque
     @aggressiveness = parameters[4].split[1].to_i
-    # Velocidade do movimento
-    @speed = parameters[5].split[1].to_i
-    # Frequência do movimento
-    @frequency = parameters[6].split[1].to_i
+    # Velocidade do movimento na batalha
+    @move_speed_battle = parameters[5].split[1].to_i
+    # Frequência do movimento na batalha
+    @move_frequency_battle = parameters[6].split[1].to_i
     # Trigger
     @trg = [parameters[7].split[1].to_i, parameters[7].split[2]]
   end
@@ -969,7 +1060,7 @@ class Game_Event < Game_Character
   #--------------------------------------------------------------------------
   def kill
     #return if @respawn
-    @respawn = RESPAWN_TIME * 40
+    @respawn = ENEMY_RESPAWN_TIME * 40
     treasure if @target.is_a?(Game_Player)
     @target = nil
     @actor = nil
@@ -1005,17 +1096,20 @@ class Game_Event < Game_Character
       $game_party.gain_gold(gold)
       $game_player.reward = gold if GOLD_ICON.empty?
     end
-    # Probabilidade do tesouro
-    if rand(100) < @actor.treasure_prob
-      if $game_drop.size >= MAX_MAP_DROPS
-        $game_party.gain_item(@actor.item_id, 1) if @actor.item_id > 0
-        $game_party.gain_weapon(@actor.weapon_id, 1) if @actor.weapon_id > 0
-        $game_party.gain_armor(@actor.armor_id, 1) if @actor.armor_id > 0
-      else
-        $game_drop << Game_Drop.new(@actor.item_id, 0, 1, @x, @y) if @actor.item_id > 0
-        $game_drop << Game_Drop.new(@actor.weapon_id, 1, 1, @x, @y) if @actor.weapon_id > 0
-        $game_drop << Game_Drop.new(@actor.armor_id, 2, 1, @x, @y) if @actor.armor_id > 0
-      end
+    enemy_drop if rand(100) < @actor.treasure_prob
+  end
+  #--------------------------------------------------------------------------
+  # * Drop do inimigo
+  #--------------------------------------------------------------------------
+  def enemy_drop
+    if $game_drop.size >= MAX_MAP_DROPS
+      $game_party.gain_item(@actor.item_id, 1) if @actor.item_id > 0
+      $game_party.gain_weapon(@actor.weapon_id, 1) if @actor.weapon_id > 0
+      $game_party.gain_armor(@actor.armor_id, 1) if @actor.armor_id > 0
+    else
+      $game_drop << Game_Drop.new(@actor.item_id, 0, 1, @x, @y) if @actor.item_id > 0
+      $game_drop << Game_Drop.new(@actor.weapon_id, 1, 1, @x, @y) if @actor.weapon_id > 0
+      $game_drop << Game_Drop.new(@actor.armor_id, 2, 1, @x, @y) if @actor.armor_id > 0
     end
   end
   #--------------------------------------------------------------------------
@@ -1040,7 +1134,8 @@ class Game_Event < Game_Character
       $game_self_switches[[@map_id, @event.id, @trg[1]]] = false
       $game_map.need_refresh = true
     end
-    # Forçar atualização para tornar igual as coordenadas do sprite do evento com às desta classe
+    # Forçar atualização para tornar igual as coordenadas do
+    #sprite do evento com às desta classe
     $game_temp.need_update = true if @trg[0] > 0
   end
   #--------------------------------------------------------------------------
@@ -1048,45 +1143,50 @@ class Game_Event < Game_Character
   #--------------------------------------------------------------------------
   def make_action
     for action in @actor.actions
-      # Se o evento estiver ocorrendo
-      next if $game_system.map_interpreter.running?
-      # Se não atender as condições de HP
-      next if @actor.hp * 100.0 / @actor.maxhp > action.condition_hp
-      # Se não atender as condições de nível
-      next if $game_party.max_level < action.condition_level
-      # Se não atender as condições de switch
-      next if action.condition_switch_id > 0 and $game_switches[action.condition_switch_id] == false
-      # Se não atender a frequência
-      next if action.rating < rand(11)
-      # Se não atender a condição de tempo
-      next if Graphics.frame_count % (@aggressiveness * ATTACK_TIME) != 0
+      next unless conditions_met?(action)
       # Limpar ação atual se o inimigo não for defender
       @actor.current_action.basic = 3 if action.basic != 1
-      # Ações
       case action.kind
       when 0 # Fundamentais
-        case action.basic
-        when 0 # Atacar
-          attack_normal
-        when 1 # Defender
-          defend
-        when 2 # Fugir
-          if @target
-            move_away_from_target(@target)
-          else
-            move_away_from_player
-          end
-        end
+        fundamental_enemy_action(action)
       when 1 # Habilidades
-        attack_skill(action.skill_id)
+        attack_skill($data_skills[action.skill_id])
       end
+    end
+  end
+  #--------------------------------------------------------------------------
+  # * Definição do atendimento das condições da ação
+  #     action : ação
+  #--------------------------------------------------------------------------
+  def conditions_met?(action)
+    return false if $game_system.map_interpreter.running?
+    return false if @actor.hp * 100.0 / @actor.maxhp > action.condition_hp
+    return false if $game_party.max_level < action.condition_level
+    return false if action.condition_switch_id > 0 and $game_switches[action.condition_switch_id] == false
+    return false if action.rating < rand(11)
+    return false if Graphics.frame_count % (@aggressiveness * ATTACK_TIME) != 0
+    return true
+  end
+  #--------------------------------------------------------------------------
+  # * Definição da ação fundamental do inimigo
+  #     action : ação
+  #--------------------------------------------------------------------------
+  def fundamental_enemy_action(action)
+    case action.basic
+    when 0 # Atacar
+      attack_normal
+    when 1 # Defender
+      defend
+    when 2 # Fugir
+      @target ? move_away_from_target(@target) : move_away_from_player
     end
   end
   #--------------------------------------------------------------------------
   # * Ataque normal
   #--------------------------------------------------------------------------
   def attack_normal
-    # Se não tiver alvo, o inimigo não irá atacar, mesmo que o herói esteja na frente do inimigo
+    # Se não tiver alvo, o inimigo não irá atacar, mesmo que o
+    #herói esteja na frente do inimigo
     return unless @target
     # Se for impossível atacar
     return if @actor.restriction == 4
@@ -1094,41 +1194,34 @@ class Game_Event < Game_Character
     animate_attack('_melee')
     if @target.is_a?(Game_Player)
       hit_player(@actor.animation2_id)
-    elsif @target.is_a?(Game_Event)
-      # Se o alvo já morreu
-      if !@target.actor? or @target.actor.dead?
-        @target = nil
-      else
-        hit_enemy(@target, @actor.animation2_id)
-      end
+    elsif @target.is_a?(Game_Event) and @target.actor? and !@target.actor.dead?
+      hit_enemy(@target, @actor.animation2_id)
+    else
+      @target = nil
     end
   end
   #--------------------------------------------------------------------------
   # * Ataque com habilidade
-  #     skill_id : ID da habilidade
+  #     skill : habilidade
   #--------------------------------------------------------------------------
-  def attack_skill(skill_id)
-    skill = $data_skills[skill_id]
-    # Se não é possível utilizar a habilidade
-    return unless @actor.skill_can_use?(skill_id)
-    # Se não tiver alvo
+  def attack_skill(skill)
+    return unless @actor.skill_can_use?(skill.id)
     return unless @target
     # Se o inimigo morreu
     return if @target.is_a?(Game_Event) and (!@target.actor? or @target.actor.dead?)
-    # Alvos que afeta
     case skill.scope
     when 1 # Herói
       # Se a habilidade ataca à distância
-      if RANGE_SKILLS.has_key?(skill_id)
+      if RANGE_SKILLS.has_key?(skill.id)
         return unless in_direction?(@target)
         skill_attack_range(skill)
       # Se é um explosivo de longo alcance
-      elsif RANGE_EXPLODE.has_key?(skill_id)
+      elsif RANGE_EXPLODE.has_key?(skill.id)
         return unless in_direction?(@target)
         skill_explode_range(skill)
       # Se a habilidade ataca em área
-      elsif AREA_SKILLS.has_key?(skill_id)
-        return unless in_range?(@target, AREA_SKILLS[skill_id])
+      elsif AREA_SKILLS.has_key?(skill.id)
+        return unless in_range?(@target, AREA_SKILLS[skill.id])
         skill_attack_area(skill)
       else
         return unless in_front?($game_player)
@@ -1147,16 +1240,12 @@ class Game_Event < Game_Character
   #--------------------------------------------------------------------------
   def skill_attack_normal(skill)
     animate_attack(SKILL_ANIMATION[skill.id]) if SKILL_ANIMATION.has_key?(skill.id)
-    #return unless @target
     if @target.is_a?(Game_Player)
       hit_player(skill.animation2_id, skill.id)
+    elsif @target.is_a?(Game_Event) and @target.actor? and !@target.actor.dead?
+      hit_enemy(@target, skill.animation2_id, skill.id)
     else
-      # Se o alvo já morreu
-      if !@target.actor? or @target.actor.dead?
-        @target = nil
-      else
-        hit_enemy(@target, skill.animation2_id, skill.id)
-      end
+      @target = nil
     end
   end
   #--------------------------------------------------------------------------
@@ -1211,39 +1300,49 @@ class Game_Event < Game_Character
   # * Atualização de movimento
   #--------------------------------------------------------------------------
   def update_self_movement
-    if @stop_count > (40 - @move_frequency * 2) * (6 - @move_frequency)
-      # Se não tiver alvo ou o alvo estiver fora do alcance
-      if !@target or !in_range?(@target, @sight) and actor?
-        # Limpar alvo fora do alcance se o herói não estiver nele
-        @target = in_range?($game_player, @sight) ? $game_player : nil
-        find_enemy_hate_group
-      end
-      # Se o inimigo estiver dentro do alcance
-      if actor? and @target
-        @move_speed = @speed
-        @move_frequency = @frequency
-        # Comportamento do inimigo
-        case @behavior
-        when 1 # Fugir do alvo
-          move_away_from_target(@target)
-        when 2 # Seguir alvo
-          move_toward_target(@target)
-        end
-      else
-        @target = nil
-        # Resetar movimento se o inimigo se transformar em evento
-        @move_speed = @old_speed
-        @move_frequency = @old_frequency
-        # Ramificação pelo tipo de movimento
-        case @move_type
-        when 1  # Aleatório
-          move_type_random
-        when 2  # Seguir herói
-          move_type_toward_player
-        when 3  # Pré-definido
-          move_type_custom
-        end
-      end
+    return unless @stop_count > (40 - @move_frequency * 2) * (6 - @move_frequency)
+    # Se não tiver alvo ou o alvo estiver fora do alcance
+    if !@target or !in_range?(@target, @sight) and actor?
+      # Limpar alvo fora do alcance se o herói não estiver nele
+      @target = in_range?($game_player, @sight) ? $game_player : nil
+      find_enemy_hate_group
+    end
+    # Se o inimigo estiver dentro do alcance
+    if actor? and @target
+      update_movement_battle
+    else
+      update_normal_movement
+    end
+  end
+  #--------------------------------------------------------------------------
+  # * Atualização de movimento na batalha
+  #--------------------------------------------------------------------------
+  def update_movement_battle
+    @move_speed = @move_speed_battle
+    @move_frequency = @move_frequency_battle
+    # Comportamento do inimigo
+    case @behavior
+    when 1 # Fugir do alvo
+      move_away_from_target(@target)
+    when 2 # Seguir alvo
+      move_toward_target(@target)
+    end
+  end
+  #--------------------------------------------------------------------------
+  # * Atualização de movimento fora da batalha
+  #--------------------------------------------------------------------------
+  def update_normal_movement
+    @target = nil
+    # Resetar movimento se o inimigo se transformar em evento
+    @move_speed = @old_move_speed
+    @move_frequency = @old_move_frequency
+    case @move_type
+    when 1  # Aleatório
+      move_type_random
+    when 2  # Seguir herói
+      move_type_toward_player
+    when 3  # Pré-definido
+      move_type_custom
     end
   end
   #--------------------------------------------------------------------------
@@ -1253,12 +1352,10 @@ class Game_Event < Game_Character
     return if @hate_group[0] == 0
     for event in $game_map.events.values
       next if !event.actor? or event.actor.dead?
-      if event.hate_group[0] > 0 and event.hate_group[1] == @hate_group[0]
-        if in_range?(event, @sight)
-          @target = event
-          break
-        end
-      end
+      next if event.hate_group[0] == 0 or event.hate_group[1] != @hate_group[0]
+      next unless in_range?(event, @sight)
+      @target = event
+      break
     end
   end
   #--------------------------------------------------------------------------
@@ -1297,20 +1394,35 @@ class Game_Player < Game_Character
     @recover_time = 0
   end
   #--------------------------------------------------------------------------
-  # * Ataque do herói
+  # * Atualização das ações do herói
+  #--------------------------------------------------------------------------
+  def update_actions
+    if @weapon_attack_time == 0
+      update_attack
+      update_defense
+    else
+      @weapon_attack_time -= 1
+    end
+  end
+  #--------------------------------------------------------------------------
+  # * Atualização do ataque do herói
   #--------------------------------------------------------------------------
   def update_attack
-    @weapon_attack_time -= 1 if @weapon_attack_time > 0
-    return if @weapon_attack_time > 0
-    # Se não for impossível atacar
-    if Input.press?(ATTACK_KEY) and @actor.weapon_id > 0 and @actor.restriction != 4
-      @weapon_attack_time = COOLDOWN_WEAPONS.has_key?(@actor.weapon_id) ? COOLDOWN_WEAPONS[@actor.weapon_id] : ATTACK_TIME
-      if RANGE_WEAPONS.has_key?(@actor.weapon_id)
-        attack_range
-      else
-        attack_normal
-      end
+    return unless Input.press?(ATTACK_KEY)
+    return unless @actor.weapon_id > 0
+    # Se for impossível atacar
+    return unless @actor.restriction != 4
+    @weapon_attack_time = COOLDOWN_WEAPONS.has_key?(@actor.weapon_id) ? COOLDOWN_WEAPONS[@actor.weapon_id] : ATTACK_TIME
+    if RANGE_WEAPONS.has_key?(@actor.weapon_id)
+      attack_range
+    else
+      attack_normal
     end
+  end
+  #--------------------------------------------------------------------------
+  # * Atualização da defesa do herói
+  #--------------------------------------------------------------------------
+  def update_defense
     if Input.press?(DEFEND_KEY) and @actor.armor1_id > 0
       @weapon_attack_time = ATTACK_TIME
       defend
@@ -1326,13 +1438,13 @@ class Game_Player < Game_Character
     return if @skill_attack_time > 0
     for key in @actor.hotkeys.keys
       next if !@actor.hotkeys[key] or @actor.hotkeys[key] == 0
-      next unless Input.trigger?(key)
+      next unless Input.press?(key)
       @skill_attack_time = COOLDOWN_SKILL
       # Se for uma habilidade
       if @actor.hotkeys[key] > 0
-        attack_skill(@actor.hotkeys[key])
+        attack_skill($data_skills[@actor.hotkeys[key]])
       else
-        use_item(@actor.hotkeys[key].abs)
+        use_item($data_items[@actor.hotkeys[key].abs])
       end
     end
   end
@@ -1351,33 +1463,29 @@ class Game_Player < Game_Character
   # * Ataque à distância
   #--------------------------------------------------------------------------
   def attack_range
-    return if $game_party.item_number(RANGE_WEAPONS[@actor.weapon_id][1]) == 0
-    $game_party.lose_item(RANGE_WEAPONS[@actor.weapon_id][1], 1)
-    projectile_name, item_id, animation_id, speed, range, animation, sufix = RANGE_WEAPONS[@actor.weapon_id]
-    animate_attack(sufix) if sufix
-    $game_range << Game_Range.new(self, projectile_name, animation_id, speed, range, animation)
+    return if $game_party.item_number(RANGE_WEAPONS[@actor.weapon_id][:item_id]) == 0
+    range = RANGE_WEAPONS[@actor.weapon_id]
+    $game_party.lose_item(range[:item_id], 1)
+    animate_attack(range[:animation_suffix]) if range[:animation_suffix]
+    $game_range << Game_Range.new(self, range[:projectile_name], range[:animation_id], range[:speed], range[:range], range[:animation])
   end
   #--------------------------------------------------------------------------
   # * Ataque com habilidade
-  #     skill_id : ID da habilidade
+  #     skill : habilidade
   #--------------------------------------------------------------------------
-  def attack_skill(skill_id)
-    skill = $data_skills[skill_id]
-    # Se o herói não possui a habilidade
-    return unless @actor.skills.include?(skill_id)
-    # Se não é possível utilizar a habilidade
-    return unless @actor.skill_can_use?(skill_id)
-    # Alvos que afeta
+  def attack_skill(skill)
+    return unless @actor.skills.include?(skill.id)
+    return unless @actor.skill_can_use?(skill.id)
     case skill.scope
     when 1 # Inimigo
       # Se a habilidade ataca à distância
-      if RANGE_SKILLS.has_key?(skill_id)
+      if RANGE_SKILLS.has_key?(skill.id)
         skill_attack_range(skill)
       # Se é um explosivo de longo alcance
-      elsif RANGE_EXPLODE.has_key?(skill_id)
+      elsif RANGE_EXPLODE.has_key?(skill.id)
         skill_explode_range(skill)
       # Se a habilidade ataca em área
-      elsif AREA_SKILLS.has_key?(skill_id)
+      elsif AREA_SKILLS.has_key?(skill.id)
         skill_attack_area(skill)
       else
         skill_attack_normal(skill)
@@ -1435,26 +1543,22 @@ class Game_Player < Game_Character
   end
   #--------------------------------------------------------------------------
   # * Usar item
-  #     item_id : ID do item
+  #     item : item
   #--------------------------------------------------------------------------
-  def use_item(item_id)
-    item = $data_items[item_id]
-    # Se o item for usável
-    if $game_party.item_can_use?(item.id)
-      # Alvos que afeta
-      case item.scope
-      when 1 # Inimigo
-        item_attack_normal(item)
-      when 2 # Todos os inimigos
-        item_attack_all(item)
-      when 3..7 # Herói
-        item_recover(item)
-      end
-      $game_system.se_play(item.menu_se)
-      $game_party.lose_item(item.id, 1) if item.consumable
-      @animation_id = item.animation1_id if item.animation1_id > 0
-      $game_temp.common_event_id = item.common_event_id if item.common_event_id > 0
+  def use_item(item)
+    return unless $game_party.item_can_use?(item.id)
+    case item.scope
+    when 1 # Inimigo
+      item_attack_normal(item)
+    when 2 # Todos os inimigos
+      item_attack_all(item)
+    when 3..7 # Herói
+      item_recover(item)
     end
+    $game_system.se_play(item.menu_se)
+    $game_party.lose_item(item.id, 1) if item.consumable
+    @animation_id = item.animation1_id if item.animation1_id > 0
+    $game_temp.common_event_id = item.common_event_id if item.common_event_id > 0
   end
   #--------------------------------------------------------------------------
   # * Ataque com item normal
@@ -1524,7 +1628,7 @@ class Game_Player < Game_Character
   #--------------------------------------------------------------------------
   def update
     diamond_abs_update
-    update_attack
+    update_actions
     update_hotkeys
     update_states
     auto_recovery
@@ -1636,7 +1740,8 @@ class Game_Range
       return
     end
     for event in $game_map.events.values
-      # Se o evento estiver oculto temporariamente ou atravessar estiver ON
+      # Se o evento estiver oculto temporariamente ou atravessar
+      #estiver ON
       next if event.erased or @x != event.x or @y != event.y or event.through
       # Se for um inimigo
       if event.actor? and !event.actor.dead?
@@ -1745,24 +1850,28 @@ end
 #==============================================================================
 class Sprite_Character < RPG::Sprite
   #--------------------------------------------------------------------------
-  alias diamond_abs_sprite_initialize initialize
+  alias diamond_abs_initialize initialize
   alias diamond_abs_update update
   #--------------------------------------------------------------------------
   # * Inicialização dos objetos
   #     viewport  : ponto de vista
   #--------------------------------------------------------------------------
   def initialize(viewport, character = nil)
+    # As variáveis de instância da classe Sprite padrão do RMXP
+    #começam com underline, como é o caso do @_damage_duration.
+    #Por essa razão, as demais variáveis de instância deste
+    #script (ex.: @_hp_sprite) também começam com underline,
     @_reward_duration = 0
-    diamond_abs_sprite_initialize(viewport, character)
+    diamond_abs_initialize(viewport, character)
   end
   #--------------------------------------------------------------------------
   # * Exibição do HP
   #--------------------------------------------------------------------------
-  def dispose_display_hp
-    return unless @_hp_display
-    @_hp_display.bitmap.dispose
-    @_hp_display.dispose
-    @_hp_display = nil
+  def dispose_hp_bar
+    return unless @_hp_sprite
+    @_hp_sprite.bitmap.dispose
+    @_hp_sprite.dispose
+    @_hp_sprite = nil
   end
   #--------------------------------------------------------------------------
   # * Exibição da recompensa
@@ -1786,7 +1895,8 @@ class Sprite_Character < RPG::Sprite
       if @character.actor.damage
         damage(@character.actor.damage, @character.actor.critical) if $game_map.in_screen?(@character)
         @character.actor.damage = nil
-        # Garante que o crítico esteja sempre falso ao receber novos danos
+        # Garante que o crítico esteja sempre falso ao receber
+        #novos danos
         @character.actor.critical = false
       elsif @character.actor.state_animation_id > 0 and @character.actor.state_animation_id != @state_animation_id
         @state_animation_id = @character.actor.state_animation_id
@@ -1794,14 +1904,14 @@ class Sprite_Character < RPG::Sprite
       end
     end
     if @character.actor? and @character.actor.hp < @character.actor.maxhp
-      update_display_hp if !@_hp_display or @character.actor.hp != @old_hp
-      @_hp_display.x = self.x
-      @_hp_display.y = self.y - self.oy / 2 - 24
+      refresh_hp_bar if !@_hp_sprite or @character.actor.hp != @old_hp
+      @_hp_sprite.x = self.x
+      @_hp_sprite.y = self.y
     else
-      dispose_display_hp
+      dispose_hp_bar
     end
     if @character.reward
-      reward(@character.reward)
+      show_reward(@character.reward)
       @character.reward = nil
     end
     if @_damage_duration > 0
@@ -1811,29 +1921,31 @@ class Sprite_Character < RPG::Sprite
     end
     if @_reward_duration > 0
       @_reward_sprite.x = self.x
-      @_reward_sprite.y = self.y - self.oy / 2 - (20 - @_reward_duration)
+      @_reward_sprite.y = self.y - (self.oy / 2 - @_reward_duration)
       @_reward_duration -= 1
     else
       dispose_reward
     end
   end
   #--------------------------------------------------------------------------
-  # * Atualização do HP
+  # * Atualização da bara de HP
   #--------------------------------------------------------------------------
-  def update_display_hp
+  def refresh_hp_bar
     @old_hp = @character.actor.hp
     bitmap = RPG::Cache.picture('HPBar')
-    if @_hp_display
-      @_hp_display.bitmap.clear
-    else
-      @_hp_display = Sprite.new(self.viewport)
-      @_hp_display.bitmap = Bitmap.new(bitmap.width, bitmap.height / 2)
-      @_hp_display.ox = bitmap.width / 2
-      @_hp_display.oy = (@ch == 100 ? -76 : -50)
-      @_hp_display.z = 2999
-    end
-    @_hp_display.bitmap.blt(0, 0, bitmap, @_hp_display.bitmap.rect)
-    @_hp_display.bitmap.blt(0, 0, bitmap, Rect.new(0, 4, bitmap.width * @old_hp / @character.actor.maxhp, 4))
+    @_hp_sprite ? @_hp_sprite.bitmap.clear : create_hp_bar(bitmap)
+    @_hp_sprite.bitmap.blt(0, 0, bitmap, @_hp_sprite.bitmap.rect)
+    @_hp_sprite.bitmap.blt(0, 0, bitmap, Rect.new(0, 4, bitmap.width * @old_hp / @character.actor.maxhp, 4))
+  end
+  #--------------------------------------------------------------------------
+  # * Criação da bara de HP
+  #--------------------------------------------------------------------------
+  def create_hp_bar(bitmap)
+    @_hp_sprite = Sprite.new(self.viewport)
+    @_hp_sprite.bitmap = Bitmap.new(bitmap.width, bitmap.height / 2)
+    @_hp_sprite.ox = bitmap.width / 2
+    @_hp_sprite.oy = -4
+    @_hp_sprite.z = self.z + 100
   end
   #--------------------------------------------------------------------------
   # * Dano
@@ -1848,63 +1960,76 @@ class Sprite_Character < RPG::Sprite
     @_damage_sprite.bitmap.font.bold = DAMAGE_FONT_BOLD
     @_damage_sprite.bitmap.font.size = DAMAGE_FONT_SIZE
     if critical
-      @_damage_sprite.bitmap.font.color = Color.new(0, 0, 0)
-      @_damage_sprite.bitmap.draw_text(- 1, 0, @_damage_sprite.bitmap.width, 36, DAMAGE_TEXTS[1], 1)
-      @_damage_sprite.bitmap.draw_text(1, 0, @_damage_sprite.bitmap.width, 36, DAMAGE_TEXTS[1], 1)
-      @_damage_sprite.bitmap.draw_text(- 1, 2, @_damage_sprite.bitmap.width, 36, DAMAGE_TEXTS[1], 1)
-      @_damage_sprite.bitmap.draw_text(1, 2, @_damage_sprite.bitmap.width, 36, DAMAGE_TEXTS[1], 1)
-      @_damage_sprite.bitmap.font.color = DAMAGE_COLORS[0]
-      @_damage_sprite.bitmap.draw_text(0, 1, @_damage_sprite.bitmap.width, 36, DAMAGE_TEXTS[1], 1)
+      draw_damage_text(DAMAGE_TEXTS[:critical], DAMAGE_COLORS[:critical])
     else
-      damage_string = value.is_a?(Numeric) ? value.abs.to_s : value.to_s
-      @_damage_sprite.bitmap.font.color = Color.new(0, 0, 0)
-      @_damage_sprite.bitmap.draw_text(- 1, 0, @_damage_sprite.bitmap.width, 36, damage_string, 1)
-      @_damage_sprite.bitmap.draw_text(1, 0, @_damage_sprite.bitmap.width, 36, damage_string, 1)
-      @_damage_sprite.bitmap.draw_text(- 1, 2, @_damage_sprite.bitmap.width, 36, damage_string, 1)
-      @_damage_sprite.bitmap.draw_text(1, 2, @_damage_sprite.bitmap.width, 36, damage_string, 1)
-      # Dano
-      if value.is_a?(Numeric) and value.to_i >= 0
-        @_damage_sprite.bitmap.font.color = DAMAGE_COLORS[1]
-      # Cura
-      elsif value.is_a?(Numeric) and value.to_i < 0
-        @_damage_sprite.bitmap.font.color = DAMAGE_COLORS[2]
-      # Errou
-      elsif damage_string == DAMAGE_TEXTS[0]
-        @_damage_sprite.bitmap.font.color = DAMAGE_COLORS[3]
-      # Subiu nível
-      elsif damage_string == DAMAGE_TEXTS[2]
-        @_damage_sprite.bitmap.font.color = DAMAGE_COLORS[5]
-      # Experiência
-      else
-        @_damage_sprite.bitmap.font.color = DAMAGE_COLORS[4]
-      end
-      @_damage_sprite.bitmap.draw_text(0, 1, @_damage_sprite.bitmap.width, 36, damage_string, 1)
+      color_key = damage_color_key(value)
+      # Converte o valor em número absoluto após a definição
+      #da chave da cor do dano, que pode ser :heal, se o valor
+      #era menor que 0
+      value = value.abs if value.is_a?(Numeric)
+      draw_damage_text(value.to_s, DAMAGE_COLORS[color_key])
     end
     @_damage_sprite.ox = 70
     @_damage_sprite.oy = 80
     @_damage_sprite.x = self.x
     @_damage_sprite.y = self.y
-    @_damage_sprite.z = 3000
+    @_damage_sprite.z = self.z + 150
     @_damage_duration = 30
   end
   #--------------------------------------------------------------------------
-  # * Recompensa
+  # * Desenhar texto do dano
+  #     text    : texto do dano
+  #     color   : cor do dano
+  #--------------------------------------------------------------------------
+  def draw_damage_text(text, color)
+    @_damage_sprite.bitmap.font.color = Color.new(0, 0, 0)
+    @_damage_sprite.bitmap.draw_text(-1, 0, @_damage_sprite.bitmap.width, 36, text, 1)
+    @_damage_sprite.bitmap.draw_text(1, 0, @_damage_sprite.bitmap.width, 36, text, 1)
+    @_damage_sprite.bitmap.draw_text(-1, 2, @_damage_sprite.bitmap.width, 36, text, 1)
+    @_damage_sprite.bitmap.draw_text(1, 2, @_damage_sprite.bitmap.width, 36, text, 1)
+    @_damage_sprite.bitmap.font.color = color
+    @_damage_sprite.bitmap.draw_text(0, 1, @_damage_sprite.bitmap.width, 36, text, 1)
+  end
+  #--------------------------------------------------------------------------
+  # * Chave da cor do dano
+  #     value    : valor
+  #--------------------------------------------------------------------------
+  def damage_color_key(value)
+    if value.is_a?(Numeric) and value >= 0
+      :damage
+    # Cura
+    elsif value.is_a?(Numeric) and value < 0
+      :heal
+    # Errou
+    elsif value == DAMAGE_TEXTS[:miss]
+      :miss
+    # Subiu nível
+    elsif value == DAMAGE_TEXTS[:level_up]
+      :level_up
+    # Experiência
+    else
+      :exp
+    end
+  end
+  #--------------------------------------------------------------------------
+  # * Mostrar recompensa
   #     value : valor
   #--------------------------------------------------------------------------
-  def reward(value)
+  def show_reward(value)
     dispose_reward
+    bitmap = RPG::Cache.icon(GOLD_ICON)
     @_reward_sprite = Sprite.new(self.viewport)
-    @_reward_sprite.bitmap = Bitmap.new(24, 24)
+    @_reward_sprite.bitmap = Bitmap.new(bitmap.width, bitmap.height)
+    @_reward_sprite.bitmap.blt(0, 0, bitmap, bitmap.rect)
     @_reward_sprite.bitmap.font.name = 'Tahoma'
     @_reward_sprite.bitmap.font.size = 12
     @_reward_sprite.bitmap.font.color = Color.new(255, 255, 0)
-    @_reward_sprite.bitmap.blt(0, 0, RPG::Cache.icon(GOLD_ICON), Rect.new(0, 0, 24, 24))
-    @_reward_sprite.bitmap.draw_text(0, 10, @_reward_sprite.bitmap.width, @_reward_sprite.bitmap.font.size + 2, value.to_s, 1)
+    @_reward_sprite.bitmap.draw_text(0, 10, bitmap.width, @_reward_sprite.bitmap.font.size + 2, value.to_s, 1)
     @_reward_sprite.ox = 0
     @_reward_sprite.oy = 20
     @_reward_sprite.x = self.x
-    @_reward_sprite.y = self.y - self.oy / 2
-    @_reward_sprite.z = 3000
+    @_reward_sprite.y = self.y
+    @_reward_sprite.z = self.z + 150
     @_reward_duration = 20
   end
 end
@@ -1925,7 +2050,7 @@ class Sprite_Range < Sprite
   def initialize(viewport, character)
     super(viewport)
     @character = character
-    self.bitmap = RPG::Cache.projectiles(@character.picture_name)
+    self.bitmap = RPG::Cache.projectile(@character.picture_name)
     self.angle = @character.angle
     @width = @character.step_anime ? bitmap.width / 4 : bitmap.width
     self.ox = @width / 2
@@ -2061,7 +2186,8 @@ class Spriteset_Map
   # * Atualização do frame
   #--------------------------------------------------------------------------
   def update_characters
-    for range in @range_sprites.compact
+    for range in @range_sprites
+      next unless range
       if range.character.destroy or range.disposed?
         range.dispose
         @range_sprites.delete(range)
@@ -2070,16 +2196,18 @@ class Spriteset_Map
         range.update if $game_map.in_screen?(range.character)
       end
     end
-    for range in $game_range.compact
+    for range in $game_range
+      next unless range
       if range.draw
-        # Atualizar independetemente de proximidade com o herói
+        # Atualizar independetemente da proximidade com o herói
         range.update
       else
         @range_sprites << Sprite_Range.new(@viewport1, range)
         range.draw = true
       end
     end
-    for drop in @drop_sprites.compact
+    for drop in @drop_sprites
+      next unless drop
       if drop.character.destroy or drop.disposed?
         drop.dispose
         @drop_sprites.delete(drop)
@@ -2088,7 +2216,8 @@ class Spriteset_Map
         drop.update if $game_map.in_screen?(drop.character)
       end
     end
-    for drop in $game_drop.compact
+    for drop in $game_drop
+      next unless drop
       if drop.draw
         if Input.trigger?(Input::C) && drop.x == $game_player.x and drop.y == $game_player.y
           drop.get_reward
@@ -2102,8 +2231,10 @@ class Spriteset_Map
     end
     # Deixe aqui no fim do procedimento
     for sprite in @character_sprites
-      # Se o character estiver no alcance do herói ou a atualização é forçada
-      sprite.update if $game_map.in_screen?(sprite.character) or $game_temp.need_update
+      # Se o character estiver no alcance do herói ou a
+      #atualização é forçada
+      sprite.update if $game_map.in_screen?(sprite.character) or
+       $game_temp.need_update
     end
     $game_temp.need_update = false
   end
@@ -2148,7 +2279,8 @@ class Interpreter
     when 4  # Esquerda
       character.turn_left
     end
-    # Forçar atualização para tornar igual as coordenadas do sprite do evento com às da nova posição
+    # Forçar atualização para tornar igual as coordenadas do
+    #sprite do evento com às da nova posição
     $game_temp.need_update = true
     return true
   end

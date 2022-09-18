@@ -8,38 +8,38 @@ by KK20                                                             Jul 18 2018
   Ever wanted to export your RPG Maker scripts to .rb files, make changes to
   them in another text editor, and then import them back into your project?
   Look no further, fellow scripters. ESIE is easy to use!
- 
+  
 [ Instructions ]++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   Place this script at the top of your script list to ensure it runs first.
   Make any changes to the configuration variables below if desired.
   Run your game and a message box will prompt success and close the game.
- 
+  
   If exporting, you can find the folder containing a bunch of .rb files in your
   project folder. A new file called "!script_order.csv" will tell this script
   in what order to import your script files back into RPG Maker. As such, you
   can create new .rb files and include its filename into "!script_order.csv"
   without ever having to open RPG Maker!
- 
+  
   If importing, please close your project (DO NOT SAVE IT) and re-open it.
- 
+  
   ** As of Version 4.0, subfolders are now possible!
- 
-  - Script names that start with the character defined in FOLDER_INDICATOR will
-    be subfolders within your exported scripts folder.
-  - You can specify the depth of subfolders by increasing the number
-    FOLDER_INDICATOR characters.
-  - Any scripts below the subfolder will be placed within it.
-  - A script name that only consists of FOLDER_INDICATOR characters indicates
-    "closing" that subfolder; scripts below will now be placed in the previous
+  
+  - Script names that start with the character defined in FOLDER_INDICATOR will 
+    be subfolders within your exported scripts folder. 
+  - You can specify the depth of subfolders by increasing the number 
+    FOLDER_INDICATOR characters. 
+  - Any scripts below the subfolder will be placed within it. 
+  - A script name that only consists of FOLDER_INDICATOR characters indicates 
+    "closing" that subfolder; scripts below will now be placed in the previous 
     (i.e. its parent's) subfolder.
-  - You may reuse a folder name multiple times. You can have subfolders named
+  - You may reuse a folder name multiple times. You can have subfolders named 
     after script authors and keep their scripts grouped together without
     disrupting your script order (and potentially crashing your project).
- 
+  
   Here's an example assuming FOLDER_INDICATOR is set to '@' :
- 
+  
   Project Script List       Project Directory
- 
+  
                             Scripts_Export_Folder/
   EarlyScript               ├ EarlyScript.rb
   @Base Scripts             ├ Base Scripts/
@@ -52,12 +52,12 @@ by KK20                                                             Jul 18 2018
   MyScript                  │ └ MyScript.rb
   @                         │
   Main                      └ Main.rb
- 
+  
 [ Compatibility ]+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   This script already has methods to ensure it will run properly on any RPG
   Maker version. This script does not rely on nor makes changes to any existing
   scripts, so it is 100% compatible with anything.
- 
+  
 [ Credits ]+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
   KK20 - made this script
   GubiD - referenced his VXA Script Import/Export
@@ -92,7 +92,7 @@ FOLDER_NAME = "Scripts"
 #------------------------------------------------------------------------------
 FOLDER_INDICATOR = '@'
 #------------------------------------------------------------------------------
-# This tag will be added to the end of a script name in the CSV file for any
+# This tag will be added to the end of a script name in the CSV file for any 
 # scripts that do not have code in them. This tag will be removed when imported
 # back into the project. Note that this does not apply to scripts with no name.
 #------------------------------------------------------------------------------
@@ -101,7 +101,7 @@ BLANK_SCRIPT_TAG = '~blank'
 # When exporting, if the folder FOLDER_NAME already exists, it will create
 # another folder of the same name along with an ID. This will make sure you do
 # not overwrite the changes you made to your scripts accidentally. If false,
-# it will erase all the files in the folder prior to exporting.
+# it will erase all the files in the folder prior to exporting. 
 # Useless for importing.
 #------------------------------------------------------------------------------
 MAKE_EXPORT_COPIES = true
@@ -124,13 +124,13 @@ TABS_TO_SPACES = true
 if IMPORT_EXPORT_MODE != 0
 
   RGSS = (RUBY_VERSION == "1.9.2" ? 3 : defined?(Hangup) ? 1 : 2)
- 
+  
   if RGSS == 3
     def p(*args)
       msgbox_p *args
     end
   end
- 
+  
   # From GubiD's script
   # These characters cannot be used as folder/file names. Any of your script
   # names that use the characters on the left will be replaced with the right.
@@ -145,11 +145,11 @@ if IMPORT_EXPORT_MODE != 0
     '|' => '¦',
     '"' => '\''
   }
- 
+  
   unless FOLDER_INDICATOR.is_a?(String) && FOLDER_INDICATOR.size == 1
     raise "FOLDER_INDICATOR needs to be 1 character long!"
   end
- 
+  
   def mkdir_p(list)
     path = ''
     list.each do |dirname|
@@ -157,7 +157,7 @@ if IMPORT_EXPORT_MODE != 0
       path += "#{dirname}/"
     end
   end
- 
+  
   def traceback_report
     backtrace = $!.backtrace.clone
     backtrace.each{ |bt|
@@ -165,7 +165,7 @@ if IMPORT_EXPORT_MODE != 0
     }
     return $!.message + "\n\n" + backtrace.join("\n")
   end
- 
+  
   def raise_traceback_error
     if $!.message.size >= 900
       File.open('traceback.log', 'w') { |f| f.write($!) }
@@ -180,7 +180,7 @@ if IMPORT_EXPORT_MODE != 0
   scripts_filename = "\0" * 256
   ini.call('Game', 'Scripts', '', scripts_filename, 256, '.\\Game.ini')
   scripts_filename.delete!("\0")
- 
+  
   counter = 0
   # Exporting?
   if IMPORT_EXPORT_MODE == 1
@@ -211,14 +211,14 @@ if IMPORT_EXPORT_MODE != 0
       script = scripts[index]
       id, name, code = script
       next if id.nil?
-     
+      
       # if this is a subfolder script name
       subfolder_level, subfolder_name = name.scan(/^(#{FOLDER_INDICATOR}+)(.*)/).flatten
       if subfolder_level
         # Replace invalid filename characters with valid characters
         subfolder_level = subfolder_level.size
         subfolder_name.split('').map{ |chr| INVALID_CHAR_REPLACE[chr] || chr }.join
-       
+        
         case subfolder_level <=> current_subfolder_level
         when -1
           (current_subfolder_level - subfolder_level).times do |n|
@@ -231,7 +231,7 @@ if IMPORT_EXPORT_MODE != 0
           else
             folder_tree[-1] = subfolder_name
           end
-         
+          
         when 0
           if subfolder_name.empty?
             folder_tree.pop
@@ -239,7 +239,7 @@ if IMPORT_EXPORT_MODE != 0
           else
             folder_tree[-1] = subfolder_name
           end
-         
+          
         when 1
           if subfolder_level - current_subfolder_level != 1
             raise "Invalid sublevel for folder!\n" +
@@ -255,7 +255,7 @@ if IMPORT_EXPORT_MODE != 0
         # no need to continue further with this script, so go to next
         next
       end
-     
+      
       # Replace invalid filename characters with valid characters
       name = name.split('').map{ |chr| INVALID_CHAR_REPLACE[chr] || chr }.join
       # Convert script data to readable format
@@ -307,7 +307,7 @@ if IMPORT_EXPORT_MODE != 0
       copy.close
     end
     # Load each script file
-    File.open("#{FOLDER_NAME}/!script_order.csv", 'r') do |list|
+    File.open("#{FOLDER_NAME}/!script_order.csv", 'r') do |list| 
       list = list.read.split("\n")
       list.each do |filename|
         code = ''
@@ -339,7 +339,7 @@ if IMPORT_EXPORT_MODE != 0
             raise "Branching subfolder needs a name!" if subfolder.empty?
             folder_tree << subfolder
           end
-         
+          
         elsif script_name.empty? || script_name[/#{BLANK_SCRIPT_TAG}$/]
           script_name = script_name.chomp("#{BLANK_SCRIPT_TAG}")
           code = ''
