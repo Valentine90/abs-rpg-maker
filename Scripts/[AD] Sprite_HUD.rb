@@ -1,7 +1,10 @@
 #==============================================================================
 # ** Sprite_HUD
 #------------------------------------------------------------------------------
+# Esta classe exibe na tela do jogo o HP, SP e experiência do herói.
+#------------------------------------------------------------------------------
 # Autor: Valentine
+# Última atualização: 13/01/2023
 #==============================================================================
 
 class Sprite_HUD < Sprite
@@ -23,13 +26,13 @@ class Sprite_HUD < Sprite
   #--------------------------------------------------------------------------
   def refresh
     actor = $game_party.actors[0]
-    back = RPG::Cache.picture('Background')
+    background = RPG::Cache.picture('Background')
     bars = RPG::Cache.picture('Bars')
     @old_hp = actor.hp
     @old_sp = actor.sp
     @old_exp = actor.now_exp
     self.bitmap.clear
-    self.bitmap.blt(0, 0, back, back.rect)
+    self.bitmap.blt(0, 0, background, background.rect)
     self.bitmap.blt(24, 0, bars, Rect.new(0, 0, bars.width * actor.hp / actor.maxhp, 15))
     self.bitmap.blt(24, 22, bars, Rect.new(0, 15, bars.width * actor.sp / actor.maxsp, 15))
     exp_bar_width = actor.level < $data_actors[1].final_level ? bars.width * actor.now_exp / actor.next_exp : bars.width

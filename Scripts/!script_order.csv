@@ -88,9 +88,10 @@ Scene_Gameover
 Scene_Debug
 ---------------- ABS ---------------~blank
 [AD] Input
-[AD] Diamond ABS
+[AD] Configs
+[AD] ABS
 [AD] Sprite_HUD
 [AD] Sprite_Hotbar
-----------------------------------------~blank
 no_script_name
+----------------------------------------~blank
 Main

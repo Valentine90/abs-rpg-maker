@@ -1,7 +1,12 @@
 #==============================================================================
 # ** Input
 #------------------------------------------------------------------------------
+# Este script complementa o Input padrão, sem substituí-lo, para
+# verificar se as teclas de atalho da hotbar, do ataque e da
+# defesa do herói foram ou estão sendo pressionadas.
+#------------------------------------------------------------------------------
 # Autor: Valentine
+# Última atualização: 13/01/2023
 #==============================================================================
 
 module Input
@@ -17,17 +22,17 @@ module Input
   @pressed = []
   # Chaves
   KEYS = {
-    :NUM_1    => 49,
-    :NUM_2    => 50,
-    :NUM_3    => 51,
-    :NUM_4    => 52,
-    :NUM_5    => 53,
-    :NUM_6    => 54,
-    :NUM_7    => 55,
-    :NUM_8    => 56,
-    :NUM_9    => 57,
-    :LETTER_D => 68,
-    :LETTER_S => 83 
+    :num_1    => 49,
+    :num_2    => 50,
+    :num_3    => 51,
+    :num_4    => 52,
+    :num_5    => 53,
+    :num_6    => 54,
+    :num_7    => 55,
+    :num_8    => 56,
+    :num_9    => 57,
+    :letter_d => 68,
+    :letter_s => 83
   }
   # Win32 API
   GET_ASYNC_KEY_STATE = Win32API.new('user32', 'GetAsyncKeyState', 'i', 'i')
